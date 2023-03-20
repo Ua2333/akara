@@ -1,12 +1,14 @@
 # akara
 
-apt update $$ apt upgrade
-
-termux-setup-storage 
+pkg update && pkg upgrade -y
 
 pkg install python
 
 pkg install git
+
+pip install requests mechanize
+
+pip install stdiomask
 
 pip install requests
 
@@ -16,8 +18,14 @@ pip install bs4
 
 git clone https://github.com/Ua2333/akara
 
-cd akera
+ls
+
+cd akara
 
 git pull
 
-python sakera.py
+python run.py
+
+
+
+
