@@ -24,7 +24,7 @@ cd akara
 
 git pull
 
-python run.py
+python Rezastore.py
 
 
 
